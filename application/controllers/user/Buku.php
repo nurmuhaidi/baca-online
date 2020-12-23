@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Buku extends CI_Controller {
 
 	public function __construct()
     {
@@ -17,11 +17,12 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-        $data['title'] = "Dashboard";
-        $data['jumlahbuku'] = $this->m_model->get('tb_kategori')->num_rows();
+        $data['title'] = "Daftar Buku";
+        $data['daftarbuku'] = $this->m_model->get('tb_kategori')->result();
+
 		$this->load->view('user/templates/header', $data);
 		$this->load->view('user/templates/sidebar');
-		$this->load->view('user/dashboard');
+		$this->load->view('user/buku');
 		$this->load->view('user/templates/footer');
 	}
 }

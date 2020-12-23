@@ -16,19 +16,19 @@
         <li class="header">MAIN NAVIGATION</li>
 
         <li class="treeview">
-          <a href="<?php echo base_url('index.php/admin/dashboard') ?>">
+          <a href="<?php echo base_url('index.php/user/dashboard') ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 
         <li class="treeview">
-          <a href="<?php echo base_url('index.php/admin/barang') ?>">
+          <a href="<?php echo base_url('index.php/user/buku') ?>">
             <i class="fa fa-book"></i> <span>Daftar Buku</span>
           </a>
         </li>
 
         <li class="treeview">
-          <a href="<?php echo base_url('index.php/admin/profile') ?>">
+          <a href="<?php echo base_url('index.php/user/profile') ?>">
             <i class="fa fa-user"></i> <span>Profile</span>
           </a>
         </li>
