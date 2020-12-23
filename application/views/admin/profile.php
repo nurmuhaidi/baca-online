@@ -18,7 +18,7 @@
       <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesan') ?>"></div>
 
       <!-- Box Data -->
-      <div class="box box-primary">
+      <div class="box box-danger">
 
         <div class="box-header with-border">
           <h3 class="box-title">Edit Profile</h3>

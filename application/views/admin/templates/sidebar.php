@@ -28,7 +28,7 @@
         </li>
 
         <li class="treeview">
-          <a href="<?php echo base_url('index.php/admin/riwayat') ?>">
+          <a href="<?php echo base_url('index.php/admin/kelola') ?>">
             <i class="fa fa-history"></i> <span>Kelola Buku</span>
           </a>
         </li>

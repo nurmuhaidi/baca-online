@@ -65,7 +65,7 @@
                                   <div class="fa fa-trash"></div> Delete
                                 </a>
                                 <!-- Tombol Edit -->
-                                <button class="btn btn-success btn-sm">
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#editData<?php echo $ktg->id; ?>">
                                   <div class="fa fa-edit"></div> Edit
                                 </button>
                               </td>
@@ -89,7 +89,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel"><div class="fa fa-plus"></div> Tambah Data Kategori</h4>
         </div>
-        <form action="<?php echo base_url('index.php/admin/kategori/insert') ?>" method="POST">
+        <form action="<?php echo base_url('index.php/admin/kategori/insert') ?>" method="POST" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="form-group">
                 <label>Nama Kategori</label>
@@ -114,3 +114,47 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal Edit Data -->
+  <?php foreach ($kategori as $ktg) { ?>
+    <div class="modal fade" id="editData<?php echo $ktg->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><div class="fa fa-edit"></div> Edit Data Kategori</h4>
+          </div>
+          <form action="<?php echo base_url('index.php/admin/kategori/update') ?>" method="POST" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="form-group">
+                  <label>Nama Kategori</label>
+                  <input type="hidden" name="id" value="<?php echo $ktg->id; ?>">
+                  <input type="text" class="form-control" name="nama" placeholder="Nama Kategori" value="<?php echo $ktg->namaKategori; ?>" required>
+              </div>
+              <div class="form-group">
+                  <label>Keterangan</label>
+                  <textarea class="form-control" name="keterangan" required><?php echo $ktg->namaKategori; ?></textarea>
+              </div>
+              <div class="form-group">
+                  <label>Gambar <font color="red">*)</font></label>
+                  <input type="file" class="form-control-file" name="gambar" style="margin-bottom: 15px">
+                  <?php
+                    if($ktg->gambar == ''){
+                      echo '<img src="'.base_url('data/gambar/no-image.jpg').'" height="100px">';
+                    } else {
+                      echo '<img src="'.base_url('data/gambar/').$ktg->gambar.'" height="100px">';
+                    }
+                  ?>
+              </div>
+
+              <font color="red">*) Kosongkan jika tidak ingin diubah!</font>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger"><div class="fa fa-trash"></div> Reset</button>
+              <button type="submit" class="btn btn-primary"><div class="fa fa-save"></div> Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <?php } ?>

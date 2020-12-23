@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2020 at 01:00 PM
+-- Generation Time: Dec 23, 2020 at 04:26 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -24,6 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_buku`
+--
+
+CREATE TABLE `tb_buku` (
+  `id` int(11) NOT NULL,
+  `namaKategori` varchar(256) NOT NULL,
+  `judul` varchar(256) NOT NULL,
+  `keterangan` text NOT NULL,
+  `link` text NOT NULL,
+  `file` varchar(256) NOT NULL,
+  `createDate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_buku`
+--
+
+INSERT INTO `tb_buku` (`id`, `namaKategori`, `judul`, `keterangan`, `link`, `file`, `createDate`) VALUES
+(1, 'Buku php', 'Buku php', 'Buku php', 'Buku php', 'Buku php', '2020-12-23 09:43:42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_kategori`
 --
 
@@ -34,6 +57,13 @@ CREATE TABLE `tb_kategori` (
   `gambar` varchar(256) NOT NULL,
   `createDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_kategori`
+--
+
+INSERT INTO `tb_kategori` (`id`, `namaKategori`, `keterangan`, `gambar`, `createDate`) VALUES
+(1, 'Pemrograman Java', 'Pemrograman Java', '', '2020-12-22 19:01:50');
 
 -- --------------------------------------------------------
 
@@ -63,6 +93,12 @@ INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `level`, `createDat
 --
 
 --
+-- Indexes for table `tb_buku`
+--
+ALTER TABLE `tb_buku`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
@@ -79,16 +115,22 @@ ALTER TABLE `tb_user`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_buku`
+--
+ALTER TABLE `tb_buku`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

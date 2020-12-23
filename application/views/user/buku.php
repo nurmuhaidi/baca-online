@@ -22,10 +22,16 @@
             <?php
                 foreach ($daftarbuku as $buku) {
             ?>
-                <div class="col-md-3 col-xs-6">
-                    <div class="box box-primary">
+                <div class="col-md-3">
+                    <div class="box box-success">
                         <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets') ?>/dist/img/avatar4.png" alt="User profile picture">
+                            <?php
+                              if ($buku->gambar == '') {
+                                echo '<img class="profile-user-img img-responsive" src="'.base_url().'/data/gambar/no-image.jpg" alt="User profile picture">';
+                              } else {
+                                echo '<img class="profile-user-img img-responsive" src="'.base_url().'/data/gambar/'.$buku->gambar.'" alt="User profile picture">';
+                              }
+                            ?>
 
                             <h3 class="profile-username text-center"><?php echo $buku->namaKategori ?></h3>
 
@@ -34,20 +40,17 @@
                                 <b>Keterangan</b> <a class="pull-right"><?php echo $buku->keterangan ?></a>
                                 </li>
                                 <li class="list-group-item">
+                                <b>Jumlah Buku</b> <a class="pull-right">0</a>
+                                </li>
+                                <li class="list-group-item">
                                 <b>Dibuat Pada</b> <a class="pull-right"><?php echo date('d-M-Y H:i:s', strtotime($buku->createDate)) ?></a>
                                 </li>
                             </ul>
 
                             <div class="pull-right">
-                                <?php if($buku->id == $this->session->userdata('id')){ ?>
-                                  <a href="<?php echo base_url('index.php/admin/profile') ?>" class="btn btn-primary btn-sm">
-                                    <div class="fa fa-user"></div> Profile
+                                  <a href="<?php echo base_url('index.php/admin/').$buku->id ?>" class="btn btn-primary btn-sm">
+                                    Selengkapnya <div class="fa fa-arrow-right"></div>
                                   </a>
-                                <?php } else { ?>
-                                  <a href="<?php echo base_url('index.php/admin/manajemen_user/delete/').$buku->id ?>" class="btn btn-primary btn-sm">
-                                    <div class="fa fa-arrow-right"></div> Selengkapnya
-                                  </a>
-                                <?php } ?>
                             </div>
                         </div>
                     </div>

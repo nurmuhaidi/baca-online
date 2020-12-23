@@ -41,15 +41,84 @@ class Kategori extends CI_Controller {
 
 		$nama		= $_POST['nama'];
 		$keterangan	= $_POST['keterangan'];
+		$gambar		= $_FILES['gambar'];
 
-		$data = array(
-			'namaKategori' 	=> $nama,
-			'keterangan' 	=> $keterangan,
-			'createDate'	=> date('Y-m-d H:i:s')
-		);
+		if($gambar != ''){
+            $config['upload_path'] = './data/gambar';
+            $config['allowed_types'] = '*';
+            $config['file_name'] = date('d-M-Y H:i:s ').time();
+
+            $this->load->library('upload', $config);
+
+            if(!$this->upload->do_upload('gambar')){
+                $gambar = '';
+            } else {
+                $gambar = $this->upload->data('file_name');
+            }
+        }
+
+		if ($gambar == '') {
+			$data = array(
+				'namaKategori' 	=> $nama,
+				'keterangan' 	=> $keterangan,
+				'createDate'	=> date('Y-m-d H:i:s')
+			);
+		} else {
+			$data = array(
+				'namaKategori' 	=> $nama,
+				'keterangan' 	=> $keterangan,
+				'gambar' 		=> $gambar,
+				'createDate'	=> date('Y-m-d H:i:s')
+			);
+		}
 
 		$this->m_model->insert($data, 'tb_kategori');
 		$this->session->set_flashdata('pesan', 'Data berhasil di tambahkan!');
+		redirect('admin/kategori');
+	}
+
+	public function update()
+	{
+		date_default_timezone_set("Asia/Jakarta");
+
+		$id			= $_POST['id'];
+		$nama		= $_POST['nama'];
+		$keterangan	= $_POST['keterangan'];
+		$gambar		= $_FILES['gambar'];
+
+		$where = array('id' => $id);
+
+		if($gambar != ''){
+            $config['upload_path'] = './data/gambar';
+            $config['allowed_types'] = '*';
+            $config['file_name'] = date('d-M-Y H:i:s ').time();
+
+            $this->load->library('upload', $config);
+
+            if(!$this->upload->do_upload('gambar')){
+                $gambar = '';
+            } else {
+                $gambar = $this->upload->data('file_name');
+            }
+        }
+
+		if ($gambar == '') {
+			$data = array(
+				'namaKategori' 	=> $nama,
+				'keterangan' 	=> $keterangan,
+				'createDate'	=> date('Y-m-d H:i:s')
+			);
+		} else {
+			$data = array(
+				'namaKategori' 	=> $nama,
+				'keterangan' 	=> $keterangan,
+				'gambar' 		=> $gambar,
+				'createDate'	=> date('Y-m-d H:i:s')
+			);
+		}
+
+		$this->m_model->update($where, $data, 'tb_kategori');
+		$this->session->set_flashdata('pesan', 'Data berhasil di ubah!');
 		redirect('admin/kategori');
 	}
 }
