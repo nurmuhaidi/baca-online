@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 23, 2020 at 04:26 AM
+-- Generation Time: Dec 23, 2020 at 12:43 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -37,13 +37,6 @@ CREATE TABLE `tb_buku` (
   `createDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_buku`
---
-
-INSERT INTO `tb_buku` (`id`, `namaKategori`, `judul`, `keterangan`, `link`, `file`, `createDate`) VALUES
-(1, 'Buku php', 'Buku php', 'Buku php', 'Buku php', 'Buku php', '2020-12-23 09:43:42');
-
 -- --------------------------------------------------------
 
 --
@@ -57,13 +50,6 @@ CREATE TABLE `tb_kategori` (
   `gambar` varchar(256) NOT NULL,
   `createDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_kategori`
---
-
-INSERT INTO `tb_kategori` (`id`, `namaKategori`, `keterangan`, `gambar`, `createDate`) VALUES
-(1, 'Pemrograman Java', 'Pemrograman Java', '', '2020-12-22 19:01:50');
 
 -- --------------------------------------------------------
 
@@ -96,13 +82,15 @@ INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `level`, `createDat
 -- Indexes for table `tb_buku`
 --
 ALTER TABLE `tb_buku`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK01` (`namaKategori`);
 
 --
 -- Indexes for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `namaKategori` (`namaKategori`);
 
 --
 -- Indexes for table `tb_user`
@@ -118,19 +106,29 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_buku`
 --
 ALTER TABLE `tb_buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tb_buku`
+--
+ALTER TABLE `tb_buku`
+  ADD CONSTRAINT `FK01` FOREIGN KEY (`namaKategori`) REFERENCES `tb_kategori` (`namaKategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

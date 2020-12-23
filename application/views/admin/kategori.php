@@ -58,7 +58,12 @@
                                   }
                                 ?>
                               </td>
-                              <td>0</td>
+                              <td>
+                                  <?php
+                                    $jumlah = $this->db->query('SELECT id FROM tb_buku WHERE namaKategori="'.$ktg->namaKategori.'"')->num_rows();
+                                    echo $jumlah . " Buku";
+                                  ?>
+                              </td>
                               <td>
                                 <!-- Tombol Delete -->
                                 <a href="<?php echo base_url('index.php/admin/kategori/delete/').$ktg->id ?>" class="btn btn-danger btn-sm tombol-yakin" data-isiData="Ingin menghapus kategori ini!">

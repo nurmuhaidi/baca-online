@@ -56,7 +56,7 @@
                       <td><?php echo $bk->file; ?></td>
                       <td>
                         <!-- Tombol Delete -->
-                        <a href="" class="btn btn-danger btn-sm">
+                        <a href="<?= base_url('index.php/admin/kelola/delete/'.$bk->id) ?>" class="btn btn-danger btn-sm">
                           <div class="fa fa-trash"></div> Delete
                         </a>
                       </td>
@@ -91,11 +91,9 @@
                 <label>Kategori Buku</label>
                 <select name="kategori" class="form-control" required>
                   <option value=""> -- Pilih Kategori -- </option>
-                  <?php
-                    foreach ($kategori as $ktg) {
-                      echo "<option value='".$ktg->$namaKategori."'>'".$ktg->$namaKategori."'</option>";
-                    }
-                  ?>
+                  <?php foreach ($kategori as $ktg) { ?>
+                    <option value="<?= $ktg->namaKategori ?>"><?= $ktg->namaKategori ?></option>
+                  <?php } ?>
                 </select>
             </div>
             <div class="form-group">
@@ -104,7 +102,7 @@
             </div>
             <div class="form-group">
                 <label>Link Buku <font color="red">*)</font></label>
-                <input type="text" class="form-control" name="link" placeholder="Judul Buku" required>
+                <input type="text" class="form-control" name="link" placeholder="Judul Buku">
             </div>
             <div class="form-group">
                 <label>File <font color="red">*)</font></label>

@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Daftar Buku
-        <small>Daftar Buku</small>
+        Kategori Buku
+        <small>Kategori Buku</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Daftar Buku</li>
+        <li class="active">Kategori Buku</li>
       </ol>
     </section>
 
@@ -40,7 +40,12 @@
                                 <b>Keterangan</b> <a class="pull-right"><?php echo $buku->keterangan ?></a>
                                 </li>
                                 <li class="list-group-item">
-                                <b>Jumlah Buku</b> <a class="pull-right">0</a>
+                                <b>Jumlah Buku</b> <a class="pull-right">
+                                  <?php
+                                    $jumlah = $this->db->query('SELECT id FROM tb_buku WHERE namaKategori="'.$buku->namaKategori.'"')->num_rows();
+                                    echo $jumlah . " Buku";
+                                  ?>
+                                </a>
                                 </li>
                                 <li class="list-group-item">
                                 <b>Dibuat Pada</b> <a class="pull-right"><?php echo date('d-M-Y H:i:s', strtotime($buku->createDate)) ?></a>
@@ -48,7 +53,7 @@
                             </ul>
 
                             <div class="pull-right">
-                                  <a href="<?php echo base_url('index.php/admin/').$buku->id ?>" class="btn btn-primary btn-sm">
+                                  <a href="<?php echo base_url('index.php/user/buku/daftarbuku/').$buku->id ?>" class="btn btn-primary btn-sm">
                                     Selengkapnya <div class="fa fa-arrow-right"></div>
                                   </a>
                             </div>
